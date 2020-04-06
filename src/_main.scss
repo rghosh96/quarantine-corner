@@ -2,7 +2,7 @@ $accent-color: rgb(120, 96, 122);
 $main-color: grey;
 $title: 'Libre Barcode 39 Text', cursive;
 $words: 'Sen', sans-serif;
-$code: 'Cutive Mono', monospace;
+$code: 'Source Code Pro', monospace;
 
 body {
   font-family: $words;
@@ -11,6 +11,10 @@ body {
 
 h1 {
   font-family: $code;
+  text-transform: uppercase;
+  color: $accent-color;
+  letter-spacing: 9px;
+  font-size: 21px !important;
   text-align: center;
 }
 
