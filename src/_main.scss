@@ -1,0 +1,104 @@
+$accent-color: rgb(120, 96, 122);
+$main-color: grey;
+$title: 'Libre Barcode 39 Text', cursive;
+$words: 'Sen', sans-serif;
+$code: 'Cutive Mono', monospace;
+
+body {
+  font-family: $words;
+  margin: 101px;
+}
+
+h1 {
+  font-family: $code;
+  text-align: center;
+}
+
+h2 {
+  font-family: $title;
+  text-align: center;
+  font-size: 51px !important;
+}
+
+p {
+  font-family: $words;
+  color: $main-color;
+}
+
+.authPages {
+  margin: 101px;
+}
+
+.form {
+  margin-top: 51px;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  width: 50%;
+  font-family: $code;
+}
+
+.card-columns {
+  margin: 31px;
+}
+
+.card-title {
+  font-family: $title;
+  cursor: pointer;
+}
+
+.modal-title {
+  font-family: $title;
+}
+
+.card {
+  margin: 21px;
+}
+
+
+.navbar-brand {
+  font-family: $title;
+  color: $accent-color !important;
+}
+
+.nav-link {
+  font-family: $words;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 3px !important;
+  border: none !important;
+  border-radius: 50% !important;
+  background-color: $accent-color !important;
+  text-align: center;
+  font-size: 11px;
+}
+
+.queryArea {
+  margin: 101px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn-primary {
+  background-color: $accent-color !important;
+  border: none !important; 
+}
+
+.dropdown {
+  font-family: $words;
+}
+
+.mr-auto {
+  display:flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
