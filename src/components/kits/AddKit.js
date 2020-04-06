@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux'
 import { addKit } from './../../reduxStore/actions/kitActions'
-
+import { Redirect } from 'react-router-dom';
 class AddKit extends Component {
     state = {
         name: '',
@@ -27,8 +27,12 @@ class AddKit extends Component {
     }
 
     render() {
+        const { auth } = this.props;
+        // redirect if not signed in!
+        if (!auth.uid) return <Redirect to ='/signin'/>
         console.log(this.props);
         console.log(this.state);
+
         return (
             <div className="authPages">
             <h2>add a kit</h2>
@@ -70,4 +74,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddKit);
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddKit);

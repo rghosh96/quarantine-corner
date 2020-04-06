@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import { connect } from 'react-redux';
 import { signIn } from './../../reduxStore/actions/authActions'
+import { Redirect } from 'react-router-dom';
 
 class SignInPage extends Component {
     state = {
@@ -25,7 +26,8 @@ class SignInPage extends Component {
     }
 
     render() {
-        const { authError } = this.props;
+        const { authError, auth } = this.props;
+        if (auth.uid) return <Redirect to ='/'/>
         return (
             <div className="authPages">
             <h2>sign in</h2>
@@ -68,7 +70,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        auth: state.firebase.auth
     }
 }
 

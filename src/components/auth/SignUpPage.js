@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 class SignUpPage extends Component {
     state = {
@@ -27,6 +30,8 @@ class SignUpPage extends Component {
     }
 
     render() {
+        const { auth } = this.props;
+        if (auth.uid) return <Redirect to ='/'/>
         return (
             <div className="authPages">
             <h2>sign up</h2>
@@ -87,4 +92,10 @@ class SignUpPage extends Component {
     }
 }
 
-export default SignUpPage
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(SignUpPage)
