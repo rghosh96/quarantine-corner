@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+react-redux-firebase app
+quarantine-corner database project documentation
 
-## Available Scripts
+overview:
 
-In the project directory, you can run:
+CLIENT SIDE:
+React & Redux
+SERVER SIDE:
+Firestore database
+Firebase authentication
+Cloud functions 
 
-### `yarn start`
+REACT COMPONENTS SET UP:
+auth: contains anything requiring authentication from firebase (ex, sign in/sign up page)
+SignInPage.js — where user signs in
+SignUpPage.js — where user signs up
+dashboard: main area of page where tables/queries are displayed
+Queries.js — where database will be queried/displayed
+kits: for adding/deleting “kits”
+AddKit.js — for adding a new kit
+KitInfo.js — to view more details about kit
+KitList.js — list of kits
+KitSummary.js — kit module for KitList
+layout: header, navbar, footer, etc
+Navbar.js — entire navber
+SignedInLinks.js — links displayed only when signed in
+SignedOutLinks.js — links displayed when signed out
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+“TABLES” & SCHEMAS:
+Users
+first name
+last name
+email
+password
+state
+classification
+Kits
+name
+type
+description
+rating
+created at
+user id
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+WTF IS REDUX AND WHY
+one big javascript object basically to store a global state
+CENTRAL location to manage all states! one place for all this data!
+any component can access data from it!
+easy to share data!!!
+no data passing or duplication
+when data is updated by one component, updates everything else
+makes state management v easy
+all states in one place, called the “store”
+provider takes data from the store and passes down via a container to components (container is glue that connects react to redux)
+container fetches necessary app data & sends it to component
+any time store/state changes, component automatically re-rendered!
+when user interacts (or api call, etc), an action occurs
+how does the event change app data? done via actions
+decides how change in store occurs via reducers — a function that takes in an action & decides what part of the store to change!
+component “requests” data from redux, redux passes the data as props
+to make a change: component dispatches an action
+action describes the change
+action passed to appropriate reducer
+reducer takes a look at action & knows where in redux to update
+reducer is the one that changes/updates in redux!!!
+	
 
-### `yarn test`
+WHEN/WHERE TO CONNECT THE DATABASE?
+Asynch code between dispatching action & reducer
+Redux middleware (thunk) in action creator
+action creators generate an action & returns to function
+can halt dispatch & perform asyncs request, then resume
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+FIREBASE NOSQL DATABASE
+collections & documents
+table: collection || tuple: document
+each document has key-value pairs (attribute-value)
+collections: kits, users, notifications (maybe?)
