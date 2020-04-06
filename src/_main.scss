@@ -25,6 +25,25 @@ p {
   color: $main-color;
 }
 
+.kitName {
+  font-family: $code;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+
+.kitNameModal {
+  font-family: $code;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 25px;
+  margin-right: 11px;
+}
+
+.kitType {
+  font-size: 11px;
+}
+
 .authPages {
   margin: 101px;
 }
@@ -40,6 +59,31 @@ form {
   font-family: $code;
 }
 
+
+.modal-body {
+  margin: 21px 73px 21px 73px;
+}
+
+.modalInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.alert-primary {
+  display: flex;
+  margin: 21px;
+  background-color: $accent-color!important;
+  border: none !important;
+  opacity: 50%;
+}
+
+.alertText {
+  color: white;
+  text-align: center;
+  font-size: 11px;
+}
+
 .card-columns {
   margin: 31px;
 }
@@ -49,6 +93,11 @@ form {
   cursor: pointer;
 }
 
+.card-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
 .modal-title {
   font-family: $title;
 }
@@ -88,6 +137,16 @@ form {
 }
 
 .btn-primary {
+  background-color: $accent-color !important;
+  border: none !important; 
+}
+
+.badge {
+  font-family: $words;
+  font-size: 11px !important;
+}
+
+.badge-primary {
   background-color: $accent-color !important;
   border: none !important; 
 }

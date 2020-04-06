@@ -66,7 +66,7 @@ class Queries extends Component {
                         <Form.Control onChange={this.handleChange} id="type" as="select" >
                             <option>select ..</option>
                             <option value="food">food</option>
-                            <option value="game" >games</option>
+                            <option value="games" >games</option>
                             <option value="tv">tv</option>
                             <option value="artsy">artsy</option>
                             <option value="misc">misc</option>

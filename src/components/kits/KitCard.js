@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 import KitInfo from './KitInfo'
 
 const KitCard = ({kit}) => {
@@ -10,12 +11,14 @@ const KitCard = ({kit}) => {
             <Card.Body>
             <Card.Title onClick={() => setModalShow(true)} >{kit.name}</Card.Title>
             <Card.Text>
-                <p>{kit.name}</p>
-                <p>{kit.type}</p>
+                <p className="kitName">{kit.name}</p>
+                <Badge pill variant="primary">
+                    {kit.type}
+                </Badge>
             </Card.Text>
             </Card.Body>
             <Card.Footer>
-            <small className="text-muted">[ Created at time ] by [ User ]</small>
+            <small className="text-muted">[ Created at time ] by {kit.user}</small>
             </Card.Footer>
                 <KitInfo kit={kit}
                     show={modalShow}

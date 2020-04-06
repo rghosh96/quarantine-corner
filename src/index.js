@@ -4,13 +4,15 @@ import './_main.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import rootReducer from './reduxStore/reducer/rootReducer'
 import thunk from 'redux-thunk';
 import firebase from 'firebase/app'
 import { createFirestoreInstance, reduxFirestore, getFirestore } from 'redux-firestore';
-import { ReactReduxFirebaseProvider, reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import fbConfig from './config/fbConfig'
+import { ReactReduxFirebaseProvider, getFirebase, isLoaded } from 'react-redux-firebase';
+import fbConfig from './config/fbConfig';
+import Spinner from 'react-bootstrap/Spinner'
+
 
 
 
@@ -50,12 +52,29 @@ const rrfProps = {
   createFirestoreInstance // <- needed if using firestore
 }
 
+// to make sure authenticate before rendering to dom
+function AuthIsLoaded({ children }) {
+  const auth = useSelector(state => state.firebase.auth)
+      if (!isLoaded(auth)) return <div>
+            <Spinner animation="grow" variant="primary" />
+            <Spinner animation="grow" variant="secondary" />
+            <Spinner animation="grow" variant="success" />
+            <Spinner animation="grow" variant="danger" />
+            <Spinner animation="grow" variant="warning" />
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="dark" />
+              </div>;
+              return children
+}
+
 // provider passes store into app so it has access to store (binding layer)
 
 ReactDOM.render(
   <Provider store = {store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-            <App />
+            <AuthIsLoaded>
+                <App />
+            </AuthIsLoaded>
         </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root')

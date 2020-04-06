@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal';
+import Badge from 'react-bootstrap/Badge';
 
 function KitInfo(props) {
         // const id= props.match.params.id;
@@ -17,8 +18,12 @@ function KitInfo(props) {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>{props.kit.name}</p>
-                <p>{props.kit.type}</p>
+                <div className="modalInfo">
+                  <p className="kitNameModal">{props.kit.name}   </p>
+                  <Badge pill variant="primary">
+                      {props.kit.type}
+                  </Badge>
+                </div>
                 <p>{props.kit.description}</p>
                 <p>[ Kit Rating ]</p>
               </Modal.Body>
