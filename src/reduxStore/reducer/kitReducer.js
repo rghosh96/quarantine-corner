@@ -14,6 +14,12 @@ const kitReducer = (state = initState, action) => {
         case 'ADD_KIT_ERROR':
             console.log("add kit error", action.err);
             return state;
+        case 'UPDATE_LIKE':
+            console.log("updated like!!", action.kit);
+            return state;
+        case 'UPDATE_LIKE_ERROR':
+            console.log("update like error", action.err);
+            return state;
         default:
             return state;
     }

@@ -24,10 +24,34 @@ h2 {
   font-size: 51px !important;
 }
 
+h3 {
+  font-family: $title;
+  font-size: 21px !important;
+}
+
 p {
   font-family: $words;
   color: $main-color;
 }
+
+.profileInfo {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 31px;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+}
+
+
+.fixed {
+  max-width: 111px !important;
+}
+
 
 .kitName {
   font-family: $code;
@@ -74,8 +98,8 @@ form {
   align-items: baseline;
 }
 
+
 .alert-primary {
-  display: flex;
   margin: 21px;
   background-color: $accent-color!important;
   border: none !important;
@@ -86,6 +110,7 @@ form {
   color: white;
   text-align: center;
   font-size: 11px;
+  margin-bottom: 0px;
 }
 
 .card-columns {
@@ -97,7 +122,13 @@ form {
   cursor: pointer;
 }
 
-.card-text {
+.identifier {
+  font-size: 11px;
+  display: flex;
+  align-items: baseline;
+}
+
+.kitcards {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -122,7 +153,18 @@ form {
   letter-spacing: 2px;
 }
 
+.text-muted {
+  display: flex;
+  justify-content: space-between;
+}
+
+.like:hover {
+  color: $accent-color;
+  cursor: pointer;
+}
+
 .btn-circle {
+  text-transform: uppercase;
   width: 30px;
   height: 30px;
   padding: 3px !important;

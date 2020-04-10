@@ -1,32 +1,48 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
-import KitInfo from './KitInfo'
+import KitInfo from './KitInfo';
+import moment from 'moment';
+import { connect } from 'react-redux';
+import { updateLike } from './../../reduxStore/actions/kitActions'
 
-const KitCard = ({kit}) => {
-    console.log(kit);
+const KitCard = (props) => {
+    console.log(props)
     const [modalShow, setModalShow] = React.useState(false);
+    const likeButton = () => {
+        console.log(props.kit)
+        props.updateLike(props.kit)
+    }
     return (
         <Card>
             <Card.Body>
-            <Card.Title onClick={() => setModalShow(true)} >{kit.name}</Card.Title>
-            <Card.Text>
-                <p className="kitName">{kit.name}</p>
+            <Card.Title onClick={() => setModalShow(true)} >{props.kit.name}</Card.Title>
+            <Card.Text className="kitcards">
+                <p className="kitName">{props.kit.name}</p>
                 <Badge pill variant="primary">
-                    {kit.type}
+                    {props.kit.type}
                 </Badge>
             </Card.Text>
             </Card.Body>
             <Card.Footer>
-            <small className="text-muted">[ Created at time ] by {kit.user}</small>
+            <small className="text-muted">{moment(props.kit.created.toDate()).calendar()} by {props.kit.user} <p className="like" onClick={likeButton}>{props.kit.likes} ♥</p></small>
             </Card.Footer>
-                <KitInfo kit={kit}
+                <KitInfo kit={props.kit}  
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
+                
         </Card>
     )
 }
 
-export default KitCard;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateLike: (kit) => dispatch(updateLike(kit))
+    }
+}
+
+
+
+export default connect(null, mapDispatchToProps)(KitCard);
 

@@ -1,10 +1,17 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Badge from 'react-bootstrap/Badge';
+import moment from 'moment';
+import { connect } from 'react-redux';
+import { updateLike } from './../../reduxStore/actions/kitActions'
 
 function KitInfo(props) {
         // const id= props.match.params.id;
         // console.log(id);
+        const likeButton = () => {
+            console.log(props.kit)
+            props.updateLike(props.kit)
+        }
         return (
             <Modal
               {...props}
@@ -28,10 +35,17 @@ function KitInfo(props) {
                 <p>[ Kit Rating ]</p>
               </Modal.Body>
               <Modal.Footer>
-                <small className="text-muted">[ Created at time ] by {props.kit.user}</small>
+                <small className="text-muted">{moment(props.kit.created.toDate()).calendar()} by {props.kit.user} &nbsp; | &nbsp; <p className="like" onClick={likeButton}>{props.kit.likes} ♥</p></small>
               </Modal.Footer>
             </Modal>
           );
 }
 
-export default KitInfo
+const mapDispatchToProps = (dispatch) => {
+  return {
+      updateLike: (kit) => dispatch(updateLike(kit))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(KitInfo);
+

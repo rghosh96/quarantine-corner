@@ -24,6 +24,8 @@ class AddKit extends Component {
         console.log(this.state);
         // pass in state to addKit which is handled by dispatcher
         this.props.addKit(this.state);
+        // redirects user to home page
+        this.props.history.push('/');
     }
 
     render() {
@@ -46,11 +48,14 @@ class AddKit extends Component {
                     <Form.Group as={Col}>
                     <Form.Label>type</Form.Label>
                     <Form.Control onChange={this.handleChange} id="type" as="select" >
-                        <option>food</option>
-                        <option>games</option>
-                        <option>tv</option>
-                        <option>artsy</option>
-                        <option>misc</option>
+                        <option>select ..</option>
+                        <option >food/drinks</option>
+                        <option >games</option>
+                        <option >movies/tv</option>
+                        <option >music</option>
+                        <option >health/exercise</option>
+                        <option >arts/diy</option>
+                        <option >misc</option>
                     </Form.Control>
                     </Form.Group>
                 </Form.Row>

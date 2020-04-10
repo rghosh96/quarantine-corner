@@ -8,13 +8,13 @@ import { connect } from 'react-redux';
 
 
 const Navigation = (props) => {
-    const { auth } = props;
+    const { auth, profile } = props;
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="/">quarantine corner</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                    {auth.uid ? <SignedInLinks/> : <SignedOutLinks/>}
+                    {auth.uid ? <SignedInLinks profile = {profile} /> : <SignedOutLinks/>}
             </Navbar.Collapse>
             </Navbar>
             
@@ -24,7 +24,8 @@ const Navigation = (props) => {
 const mapStateToProps = (state) => {
     console.log(state)
     return{
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
     }
 }
 

@@ -22,3 +22,31 @@ export const signOut = () => {
         })
     }
 }
+
+export const signUp = (newUser) => {
+    // firebase for auth, firestore to store user data in users collections
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+        // create user
+        firebase.auth().createUserWithEmailAndPassword(
+            newUser.email,
+            newUser.password
+        ).then((resp) => {
+            // create new document for this user in users collection
+            return firestore.collection('users').doc(resp.user.uid).set({
+                email: newUser.email,
+                fName: newUser.fName,
+                lName: newUser.lName,
+                major: newUser.major,
+                state: newUser.state,
+                classification: newUser.classification,
+                initials: newUser.fName[0] + newUser.lName[0],
+                username: newUser.email.split('@')[0] })
+            }).then(() => {
+                dispatch({ type: 'SIGNUP_SUCCESS'})
+            }).catch(err => {
+                dispatch({ type: 'SIGNUP_ERROR', err})
+            })
+    }
+}

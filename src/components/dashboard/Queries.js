@@ -28,13 +28,13 @@ class Queries extends Component {
                 
                 <div className="queryArea">
                     <h1 className="title">quarantine corner</h1>
-                    <p>pls select a query, & then click kit barcode to view more information!</p>
+                    <p>pls select which quarantine kits to view, & then click kit barcode to view more information!</p>
                     <hr />
                     <Form.Control onChange={this.handleChange} id="selection" as="select" >
-                        <option value="query0">please select a query ...</option>
+                        <option value="query0">select an option...</option>
                         <option value="query1">view all kits</option>
-                        <option value="query2" >search by username</option>
-                        <option value="query3">search by type</option>
+                        <option value="query2" >view kits by user</option>
+                        <option value="query3">view kits by type</option>
                     </Form.Control>
 
                     {/* view all kits */}
@@ -51,7 +51,9 @@ class Queries extends Component {
                     {this.state.selection == 'query2' ? 
                     <div>
                         <br></br>
-                        <p>real-time search for a user's quarantine kits!!! </p>
+                        <p>type in the username. if no kits are displayed, the username is 
+                            either not recognized or that user does not added any kits yet!
+                        </p>
                         <Form.Control onChange={this.handleChange} id="user" placeholder="enter username" /> 
                         {this.state.user ? <SearchUserKit kits = {this.props} search = {this.state.user}/> : null}
                     </div>
@@ -65,10 +67,12 @@ class Queries extends Component {
                         <p>pls select a type: </p>
                         <Form.Control onChange={this.handleChange} id="type" as="select" >
                             <option>select ..</option>
-                            <option value="food">food</option>
+                            <option value="food/drinks">food/drinks</option>
                             <option value="games" >games</option>
-                            <option value="tv">tv</option>
-                            <option value="artsy">artsy</option>
+                            <option value="movies/tv">movies/tv</option>
+                            <option value="music">music</option>
+                            <option value="health/exercise">health/exercise</option>
+                            <option value="arts/diy">arts/diy</option>
                             <option value="misc">misc</option>
                         </Form.Control>
                         {this.state.type ? <SearchTypeKit kits = {this.props} search = {this.state.type}/> : null}
@@ -77,6 +81,7 @@ class Queries extends Component {
                     }
                     
                 </div>
+                
             </div>
 
         )
@@ -89,12 +94,14 @@ const mapStateToProps = (state) => {
     console.log(state);
     return {
         // get kit object from rootReducer, to kits array
-        kit: state.firestore.ordered.kit
+        kit: state.firestore.ordered.kit,
+        users: state.firestore.ordered.users
+
     }
 }
 
 export default  compose(
-    firestoreConnect(() => ['kit']),
+    firestoreConnect(() => ['kit', 'users']),
     connect(mapStateToProps)
 )(Queries);
 

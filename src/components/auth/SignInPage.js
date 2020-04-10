@@ -53,7 +53,7 @@ class SignInPage extends Component {
                         <p className="alertText">
                         sorry!!! that email/password combo was not recognized! ):
                         </p>
-                    </Alert> : <p>success signing in!</p>}
+                    </Alert> : null}
                     </Form>
                     
             </div>
