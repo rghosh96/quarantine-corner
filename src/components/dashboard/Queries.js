@@ -55,7 +55,7 @@ class Queries extends Component {
                             either not recognized or that user does not added any kits yet!
                         </p>
                         <Form.Control onChange={this.handleChange} id="user" placeholder="enter username" /> 
-                        {this.state.user ? <SearchUserKit kits = {this.props} search = {this.state.user}/> : null}
+                        {this.state.user ? <SearchUserKit kit = {this.props.kit} likes = {this.props.likes} search = {this.state.user}/> : null}
                     </div>
                     : null
                     }
@@ -75,7 +75,7 @@ class Queries extends Component {
                             <option value="arts/diy">arts/diy</option>
                             <option value="misc">misc</option>
                         </Form.Control>
-                        {this.state.type ? <SearchTypeKit kits = {this.props} search = {this.state.type}/> : null}
+                        {this.state.type ? <SearchTypeKit kit = {this.props.kit} likes = {this.props.likes} search = {this.state.type}/> : null}
                     </div>
                     : null
                     }
@@ -95,8 +95,8 @@ const mapStateToProps = (state) => {
     return {
         // get kit object from rootReducer, to kits array
         kit: state.firestore.ordered.kit,
-        users: state.firestore.ordered.users,
         likes: state.firestore.ordered.likes,
+        users: state.firestore.ordered.users,
         auth: state.firebase.auth
     }
 }
