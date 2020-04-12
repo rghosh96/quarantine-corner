@@ -3,10 +3,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux'
+import KitCard from '../kits/KitCard';
+import CardColumns from 'react-bootstrap/CardColumns'
 
-const UserProfile = ({profile, auth}) => {
-    console.log(profile);
+const UserProfile = ({profile, auth, likes, kit}) => {
+    var userLikes
     if (!auth.uid) return <Redirect to ='/'/>
+    console.log(kit)
+    console.log(likes)
     return (
         <div className = "authPages">
             <h1> User Profile. </h1>
@@ -38,6 +44,20 @@ const UserProfile = ({profile, auth}) => {
                 </Row>
             </div>
             </div>
+
+            <CardColumns>
+                {
+                    kit && kit.map(likedKit => {
+                        for (var i in likes) {
+                            if (likedKit.id === likes[i].id && likes[i].like === true) {
+                                return (
+                                <KitCard kit={likedKit} like={likes[i]} key={likedKit.id} /> )
+                        }
+                    
+                    }})
+             }
+                    
+            </CardColumns>
             
         </div>
     )
@@ -48,9 +68,23 @@ const mapStateToProps = (state) => {
     console.log(state)
     return{
         profile: state.firebase.profile,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        likes: state.firestore.ordered.likes,
+        kit: state.firestore.ordered.kit
     }
 }
 
-export default connect(mapStateToProps)(UserProfile);
+export default  compose(
+    connect(mapStateToProps),
+    firestoreConnect(props => {
+        return [ 
+        {collection: 'kit'},
+        {collection: 'users',
+        doc: props.auth.uid,
+        subcollections: [
+            {collection: 'likes'}
+        ], storeAs: 'likes'}
+    ]})
+)(UserProfile);
+
 

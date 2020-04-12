@@ -35,7 +35,7 @@ export const addKit = (kit) => {
     }
 }
 
-export const updateLike = (kit) => {
+export const updateLike = (kit, value) => {
     // dispatch dispatches action to reducer
     // returns to function and halts dispatch
     return (dispatch, getState, {getFirebase, getFirestore}) => {
@@ -45,7 +45,7 @@ export const updateLike = (kit) => {
         const firestoreDB = getFirestore();
         firestoreDB.collection('kit').doc(kit.id).set({
             ...kit,
-            likes: kit.likes + 1
+            likes: kit.likes + value
         }).then(() => {
             // returns promise when finished, & can
             // then continue with dispatch
@@ -62,3 +62,57 @@ export const updateLike = (kit) => {
         
     }
 }
+
+export const likeKit = (user, kit, like) => {
+    // dispatch dispatches action to reducer
+    // returns to function and halts dispatch
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        // make asynch db call
+        // reference to firestore db
+        const firestoreDB = getFirestore();
+        firestoreDB.collection('users').doc(user.uid).collection('likes').doc(kit.id).set({
+            like: like
+        }).then(() => {
+            // returns promise when finished, & can
+            // then continue with dispatch
+            dispatch({
+                type: 'LIKE_KIT_SUCCESS',
+                kit: kit
+            })
+        }).catch((err) => {
+            dispatch({ 
+                type: 'LIKE_KIT_ERROR',
+                err
+            });
+        })
+        
+    }
+}
+
+// export const addLike = (user, kit) => {
+//     // dispatch dispatches action to reducer
+//     // returns to function and halts dispatch
+//     return (dispatch, getState, {getFirebase, getFirestore}) => {
+//         // make asynch db call
+//         // reference to firestore db
+//         console.log(kit);
+//         const firestoreDB = getFirestore();
+//         firestoreDB.collection('users').doc(user.uid).collection('likes').add({
+//             kitId: kit.id,
+//             like: true
+//         }).then(() => {
+//             // returns promise when finished, & can
+//             // then continue with dispatch
+//             dispatch({
+//                 type: 'ADDLIKE_KIT_SUCCESS',
+//                 kit: kit
+//             })
+//         }).catch((err) => {
+//             dispatch({ 
+//                 type: 'ADDLIKE_KIT_ERROR',
+//                 err
+//             });
+//         })
+        
+//     }
+// }

@@ -3,15 +3,28 @@ import Modal from 'react-bootstrap/Modal';
 import Badge from 'react-bootstrap/Badge';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { updateLike } from './../../reduxStore/actions/kitActions'
+import { updateLike,likeKit, addLike } from './../../reduxStore/actions/kitActions'
 
 function KitInfo(props) {
         // const id= props.match.params.id;
         // console.log(id);
         const likeButton = () => {
-            console.log(props.kit)
-            props.updateLike(props.kit)
-        }
+          console.log(props.like)
+          if (props.like) {
+              if (props.like.like === true) {
+                  props.likeKit(props.auth, props.kit, false)
+                  props.updateLike(props.kit, -1)
+              }
+              else {
+                  props.likeKit(props.auth, props.kit, true)
+                  props.updateLike(props.kit, 1)
+              }
+          }
+          else {
+              props.likeKit(props.auth, props.kit, true)
+              props.updateLike(props.kit, 1)
+          }
+      }
         return (
             <Modal
               {...props}
@@ -43,9 +56,18 @@ function KitInfo(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      updateLike: (kit) => dispatch(updateLike(kit))
+    updateLike: (kit, value) => dispatch(updateLike(kit, value)),
+    likeKit: (user, kit, like) => dispatch(likeKit(user, kit, like)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(KitInfo);
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+      auth: state.firebase.auth
+  }
+}
+
+export default
+  connect(mapStateToProps, mapDispatchToProps)(KitInfo);
 

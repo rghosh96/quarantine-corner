@@ -4,14 +4,27 @@ import Badge from 'react-bootstrap/Badge';
 import KitInfo from './KitInfo';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { updateLike } from './../../reduxStore/actions/kitActions'
+import { updateLike,likeKit, addLike } from './../../reduxStore/actions/kitActions'
 
 const KitCard = (props) => {
     console.log(props)
     const [modalShow, setModalShow] = React.useState(false);
     const likeButton = () => {
-        console.log(props.kit)
-        props.updateLike(props.kit)
+        console.log(props.like)
+        if (props.like) {
+            if (props.like.like === true) {
+                props.likeKit(props.auth, props.kit, false)
+                props.updateLike(props.kit, -1)
+            }
+            else {
+                props.likeKit(props.auth, props.kit, true)
+                props.updateLike(props.kit, 1)
+            }
+        }
+        else {
+            props.likeKit(props.auth, props.kit, true)
+            props.updateLike(props.kit, 1)
+        }
     }
     return (
         <Card>
@@ -27,7 +40,7 @@ const KitCard = (props) => {
             <Card.Footer>
             <small className="text-muted">{moment(props.kit.created.toDate()).calendar()} by {props.kit.user} <p className="like" onClick={likeButton}>{props.kit.likes} ♥</p></small>
             </Card.Footer>
-                <KitInfo kit={props.kit}  
+                <KitInfo kit={props.kit} like={props.like}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
@@ -38,11 +51,20 @@ const KitCard = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateLike: (kit) => dispatch(updateLike(kit))
+        updateLike: (kit, value) => dispatch(updateLike(kit, value)),
+        likeKit: (user, kit, like) => dispatch(likeKit(user, kit, like)),
+        // addLike: (user, kit) => dispatch(addLike(user, kit))
     }
 }
 
 
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        auth: state.firebase.auth
+    }
+}
 
-export default connect(null, mapDispatchToProps)(KitCard);
+export default
+    connect(mapStateToProps, mapDispatchToProps)(KitCard);
 

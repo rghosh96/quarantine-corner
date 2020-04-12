@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 
 class Queries extends Component {
     state = {
-        selection: '',
+        selection: 'query1',
         user: '',
         type: ''
     }
@@ -95,13 +95,23 @@ const mapStateToProps = (state) => {
     return {
         // get kit object from rootReducer, to kits array
         kit: state.firestore.ordered.kit,
-        users: state.firestore.ordered.users
-
+        users: state.firestore.ordered.users,
+        likes: state.firestore.ordered.likes,
+        auth: state.firebase.auth
     }
 }
 
 export default  compose(
-    firestoreConnect(() => ['kit', 'users']),
-    connect(mapStateToProps)
+    connect(mapStateToProps),
+    firestoreConnect(props => {
+        return [ 
+        {collection: 'kit'},
+        {collection: 'users'},
+        {collection: 'users',
+        doc: props.auth.uid,
+        subcollections: [
+            {collection: 'likes'}
+        ], storeAs: 'likes'}
+    ]})
 )(Queries);
 
