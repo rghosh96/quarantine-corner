@@ -1,8 +1,9 @@
-$accent-color: rgb(120, 96, 122);
+$accent-color: rgb(132, 101, 134);
+$accent-color2:rgb(199, 121, 160);
 $main-color: grey;
 $title: 'Libre Barcode 39 Text', cursive;
 $words: 'Sen', sans-serif;
-$code: 'Cutive Mono', monospace;
+$code: 'Source Code Pro', monospace;
 
 body {
   font-family: $words;
@@ -11,6 +12,10 @@ body {
 
 h1 {
   font-family: $code;
+  text-transform: uppercase;
+  color: $accent-color;
+  letter-spacing: 9px;
+  font-size: 21px !important;
   text-align: center;
 }
 
@@ -20,9 +25,52 @@ h2 {
   font-size: 51px !important;
 }
 
+h3 {
+  font-family: $title;
+  font-size: 21px !important;
+}
+
 p {
   font-family: $words;
   color: $main-color;
+}
+
+.profileInfo {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 31px;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+}
+
+
+.fixed {
+  max-width: 111px !important;
+}
+
+
+.kitName {
+  font-family: $code;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+
+.kitNameModal {
+  font-family: $code;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 25px;
+  margin-right: 11px;
+}
+
+.kitType {
+  font-size: 11px;
 }
 
 .authPages {
@@ -40,6 +88,32 @@ form {
   font-family: $code;
 }
 
+
+.modal-body {
+  margin: 21px 73px 21px 73px;
+}
+
+.modalInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+
+.alert-primary {
+  margin: 21px;
+  background-color: $accent-color!important;
+  border: none !important;
+  opacity: 50%;
+}
+
+.alertText {
+  color: white;
+  text-align: center;
+  font-size: 11px;
+  margin-bottom: 0px;
+}
+
 .card-columns {
   margin: 31px;
 }
@@ -49,6 +123,17 @@ form {
   cursor: pointer;
 }
 
+.identifier {
+  font-size: 11px;
+  display: flex;
+  align-items: baseline;
+}
+
+.kitcards {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
 .modal-title {
   font-family: $title;
 }
@@ -69,7 +154,28 @@ form {
   letter-spacing: 2px;
 }
 
+.text-muted {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activeLike {
+  color: $accent-color2;
+
+}
+
+.activeLike:hover {
+  color: $accent-color ;
+  cursor: pointer ;
+}
+
+.like:hover {
+  color: $accent-color;
+  cursor: pointer;
+}
+
 .btn-circle {
+  text-transform: uppercase;
   width: 30px;
   height: 30px;
   padding: 3px !important;
@@ -88,6 +194,16 @@ form {
 }
 
 .btn-primary {
+  background-color: $accent-color !important;
+  border: none !important; 
+}
+
+.badge {
+  font-family: $words;
+  font-size: 11px !important;
+}
+
+.badge-primary {
   background-color: $accent-color !important;
   border: none !important; 
 }

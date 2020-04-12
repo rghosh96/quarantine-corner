@@ -8,6 +8,8 @@ import KitInfo from './components/kits/KitInfo';
 import SignInPage from './components/auth/SignInPage';
 import SignUpPage from './components/auth/SignUpPage';
 import AddKit from './components/kits/AddKit';
+import UserProfile from './components/users/UserProfile';
+import AllUsers from './components/users/AllUsers';
 
 
 function App() {
@@ -16,10 +18,11 @@ function App() {
       <Navigation />
       <Switch>
         <Route exact path='/' component={Queries} />
-        <Route path='/kit/:id' component={KitInfo} />
         <Route path='/signin' component={SignInPage} />
         <Route path='/signup' component={SignUpPage} />
         <Route path='/addkit' component={AddKit} />
+        <Route path='/profile' component={UserProfile} />
+        <Route path='/users' component={AllUsers} />
       </Switch>
     </BrowserRouter>
   );
