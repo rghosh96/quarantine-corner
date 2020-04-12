@@ -9,7 +9,6 @@ import KitCard from '../kits/KitCard';
 import CardColumns from 'react-bootstrap/CardColumns'
 
 const UserProfile = ({profile, auth, likes, kit}) => {
-    var userLikes
     if (!auth.uid) return <Redirect to ='/'/>
     console.log(kit)
     console.log(likes)
@@ -44,7 +43,9 @@ const UserProfile = ({profile, auth, likes, kit}) => {
                 </Row>
             </div>
             </div>
-
+            <hr></hr>
+            <br/>
+            <h1> Your Liked Kits. </h1>
             <CardColumns>
                 {
                     kit && kit.map(likedKit => {

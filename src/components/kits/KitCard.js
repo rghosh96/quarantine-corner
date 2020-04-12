@@ -9,6 +9,19 @@ import { updateLike,likeKit, addLike } from './../../reduxStore/actions/kitActio
 const KitCard = (props) => {
     console.log(props)
     const [modalShow, setModalShow] = React.useState(false);
+    const checkLike = () => {
+        if (props.like) {
+            if (props.like.like === true) {
+                return 'activeLike'
+            }
+            else {
+                return 'like'
+            }
+        }
+        else {
+            return 'like'
+        }
+    }
     const likeButton = () => {
         console.log(props.like)
         if (props.like) {
@@ -38,7 +51,7 @@ const KitCard = (props) => {
             </Card.Text>
             </Card.Body>
             <Card.Footer>
-            <small className="text-muted">{moment(props.kit.created.toDate()).calendar()} by {props.kit.user} <p className="like" onClick={likeButton}>{props.kit.likes} ♥</p></small>
+            <small className="text-muted">{moment(props.kit.created.toDate()).calendar()} by {props.kit.user} <p className ={props.auth.uid ?checkLike(): 'disabled'} onClick={props.auth.uid ? likeButton: null}>{props.kit.likes} ♥</p></small>
             </Card.Footer>
                 <KitInfo kit={props.kit} like={props.like}
                     show={modalShow}

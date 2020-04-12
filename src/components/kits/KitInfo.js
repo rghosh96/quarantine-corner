@@ -8,6 +8,19 @@ import { updateLike,likeKit, addLike } from './../../reduxStore/actions/kitActio
 function KitInfo(props) {
         // const id= props.match.params.id;
         // console.log(id);
+        const checkLike = () => {
+          if (props.like) {
+              if (props.like.like === true) {
+                  return 'activeLike'
+              }
+              else {
+                  return 'like'
+              }
+          }
+          else {
+              return 'like'
+          }
+      }
         const likeButton = () => {
           console.log(props.like)
           if (props.like) {
@@ -45,10 +58,9 @@ function KitInfo(props) {
                   </Badge>
                 </div>
                 <p>{props.kit.description}</p>
-                <p>[ Kit Rating ]</p>
               </Modal.Body>
               <Modal.Footer>
-                <small className="text-muted">{moment(props.kit.created.toDate()).calendar()} by {props.kit.user} &nbsp; | &nbsp; <p className="like" onClick={likeButton}>{props.kit.likes} ♥</p></small>
+                <small className="text-muted">{moment(props.kit.created.toDate()).calendar()} by {props.kit.user} &nbsp; | &nbsp; <p className ={props.auth.uid ?checkLike(): 'disabled'} onClick={props.auth.uid ? likeButton: null}>{props.kit.likes} ♥</p></small>
               </Modal.Footer>
             </Modal>
           );

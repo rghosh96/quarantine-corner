@@ -104,6 +104,7 @@ const mapStateToProps = (state) => {
 export default  compose(
     connect(mapStateToProps),
     firestoreConnect(props => {
+        if (props.auth.uid) {
         return [ 
         {collection: 'kit'},
         {collection: 'users'},
@@ -112,6 +113,10 @@ export default  compose(
         subcollections: [
             {collection: 'likes'}
         ], storeAs: 'likes'}
-    ]})
+    ]}
+    else {
+        return[{collection: 'kit'},
+        {collection: 'users'}]
+    }})
 )(Queries);
 

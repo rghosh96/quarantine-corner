@@ -1,4 +1,5 @@
-$accent-color: rgb(120, 96, 122);
+$accent-color: rgb(132, 101, 134);
+$accent-color2:rgb(199, 121, 160);
 $main-color: grey;
 $title: 'Libre Barcode 39 Text', cursive;
 $words: 'Sen', sans-serif;
@@ -156,6 +157,16 @@ form {
 .text-muted {
   display: flex;
   justify-content: space-between;
+}
+
+.activeLike {
+  color: $accent-color2;
+
+}
+
+.activeLike:hover {
+  color: $accent-color ;
+  cursor: pointer ;
 }
 
 .like:hover {
