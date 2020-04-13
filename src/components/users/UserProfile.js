@@ -45,6 +45,27 @@ const UserProfile = ({profile, auth, likes, kit}) => {
             </div>
             <hr></hr>
             <br/>
+            <h1> Your Kits. </h1>
+            <CardColumns>
+                {
+                    kit && kit.map(userKit => {
+                        var like
+                        if(likes) {
+                        for (var i in likes) {
+                            if (likes[i].id === userKit.id) {
+                                like = likes[i]}
+                        }
+                        if (userKit.userId === auth.uid) {
+                                return (
+                                <KitCard kit={userKit} like={like} key={userKit.id} /> )
+                        }
+                    
+                    }})
+             }
+                    
+            </CardColumns>
+            <hr></hr>
+            <br/>
             <h1> Your Liked Kits. </h1>
             <CardColumns>
                 {
@@ -78,6 +99,7 @@ const mapStateToProps = (state) => {
 export default  compose(
     connect(mapStateToProps),
     firestoreConnect(props => {
+        if (props.auth.uid) {
         return [ 
         {collection: 'kit'},
         {collection: 'users',
@@ -85,7 +107,7 @@ export default  compose(
         subcollections: [
             {collection: 'likes'}
         ], storeAs: 'likes'}
-    ]})
+    ]}})
 )(UserProfile);
 
 

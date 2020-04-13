@@ -88,6 +88,20 @@ form {
   font-family: $code;
 }
 
+.queries {
+  width: 100%;
+}
+
+#selection, #type, #user {
+  width: 300px;
+}
+
+.directions {
+  width: 100%;
+  display: flex;
+  justify-content: center !important;
+}
+
 
 .modal-body {
   margin: 21px 73px 21px 73px;
@@ -142,6 +156,17 @@ form {
   margin: 21px;
 }
 
+.delete {
+  font-size: 9px;
+  text-transform: uppercase;
+  font-family: $code;
+  font-weight: 3px;
+}
+
+.delete:hover {
+  cursor: pointer;
+  color: $accent-color2;
+}
 
 .navbar-brand {
   font-family: $title;

@@ -3,8 +3,7 @@ import KitCard from './KitCard';
 import CardColumns from 'react-bootstrap/CardColumns'
 
 const SearchTypeKit = ({kit, likes, search}) => {
-    console.log(kit);
-    console.log(likes);
+
     console.log(search);
 
     return (

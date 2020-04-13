@@ -20,12 +20,17 @@ class AddKit extends Component {
     }
 
     handleSubmit = (e) => {
+        if (this.state.name || this.state.type || this.state.description  === '') {
+            this.emptyError();
+        }
+        else {
         e.preventDefault();
         console.log(this.state);
         // pass in state to addKit which is handled by dispatcher
         this.props.addKit(this.state);
         // redirects user to home page
         this.props.history.push('/');
+        }
     }
 
     render() {

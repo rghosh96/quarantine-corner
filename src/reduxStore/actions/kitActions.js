@@ -9,7 +9,7 @@ export const addKit = (kit) => {
         // gets profile data from firebase
         const profileInfo = getState().firebase.profile
         // gets userId to associate with user collection when kit is added
-        const userId = getState().firebase.auth
+        const userId = getState().firebase.auth.uid
         firestoreDB.collection('kit').add({
             name: kit.name,
             type: kit.type,
@@ -89,30 +89,21 @@ export const likeKit = (user, kit, like) => {
     }
 }
 
-// export const addLike = (user, kit) => {
-//     // dispatch dispatches action to reducer
-//     // returns to function and halts dispatch
-//     return (dispatch, getState, {getFirebase, getFirestore}) => {
-//         // make asynch db call
-//         // reference to firestore db
-//         console.log(kit);
-//         const firestoreDB = getFirestore();
-//         firestoreDB.collection('users').doc(user.uid).collection('likes').add({
-//             kitId: kit.id,
-//             like: true
-//         }).then(() => {
-//             // returns promise when finished, & can
-//             // then continue with dispatch
-//             dispatch({
-//                 type: 'ADDLIKE_KIT_SUCCESS',
-//                 kit: kit
-//             })
-//         }).catch((err) => {
-//             dispatch({ 
-//                 type: 'ADDLIKE_KIT_ERROR',
-//                 err
-//             });
-//         })
+export const deleteKit = (kit) => {
+    // dispatch dispatches action to reducer; returns function and halts that dispatch
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        // make asynch call to firestore db, then carry on w dispatch
+        const firestore = getFirestore();
+        firestore.collection('kit').doc(kit.id).delete().then(() => {
+            dispatch({
+                type: 'DELETE_KIT_SUCCESS',
+            });
+        }).catch((error) => {
+            dispatch({
+                type: 'DELETE_KIT_ERROR',
+                error
+            })
+        })
         
-//     }
-// }
+    }
+}

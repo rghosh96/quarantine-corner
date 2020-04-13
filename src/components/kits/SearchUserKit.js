@@ -20,7 +20,7 @@ const SearchUserKit = ({kit, likes, search}) => {
                         console.log(likes[i].id)
                         alike = likes[i]}
                 }}
-                if (kit.type === search) {
+                if (kit.user === search) {
                     return (
                         <KitCard kit={kit} like={alike}  key={kit.id} />
                     )}

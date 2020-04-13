@@ -1,10 +1,11 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import KitInfo from './KitInfo';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { updateLike,likeKit, addLike } from './../../reduxStore/actions/kitActions'
+import { updateLike,likeKit, deleteKit } from './../../reduxStore/actions/kitActions'
 
 const KitCard = (props) => {
     console.log(props)
@@ -22,6 +23,11 @@ const KitCard = (props) => {
             return 'like'
         }
     }
+
+    const deleteThis = () => {
+        props.deleteKit(props.kit)
+    }
+
     const likeButton = () => {
         console.log(props.like)
         if (props.like) {
@@ -39,12 +45,17 @@ const KitCard = (props) => {
             props.updateLike(props.kit, 1)
         }
     }
+
+    
+
     return (
         <Card>
-            <Card.Body>
-            <Card.Title onClick={() => setModalShow(true)} >{props.kit.name}</Card.Title>
+            <Card.Body> <div class="kitcards">
+            <Card.Title onClick={() => setModalShow(true)} >{props.kit.name} </Card.Title> 
+            {props.auth.uid === props.kit.userId? <p onClick={() => {deleteThis()} } className="delete" >delete</p> : null}
+            </div>
             <Card.Text className="kitcards">
-                <p className="kitName">{props.kit.name}</p>
+                <p className="kitName">{props.kit.name} </p> 
                 <Badge pill variant="primary">
                     {props.kit.type}
                 </Badge>
@@ -66,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateLike: (kit, value) => dispatch(updateLike(kit, value)),
         likeKit: (user, kit, like) => dispatch(likeKit(user, kit, like)),
-        // addLike: (user, kit) => dispatch(addLike(user, kit))
+        deleteKit: (kit) => dispatch(deleteKit(kit))
     }
 }
 

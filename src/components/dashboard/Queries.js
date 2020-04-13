@@ -30,18 +30,23 @@ class Queries extends Component {
                     <h1 className="title">quarantine corner</h1>
                     <p>pls select which quarantine kits to view, & then click kit barcode to view more information!</p>
                     <hr />
+                    <div className="queries">
+                    <div className="directions">
                     <Form.Control onChange={this.handleChange} id="selection" as="select" >
                         <option value="query0">select an option...</option>
                         <option value="query1">view all kits</option>
                         <option value="query2" >view kits by user</option>
                         <option value="query3">view kits by type</option>
-                    </Form.Control>
+                    </Form.Control> 
+                    </div>
+                    <br></br>
+                    <hr></hr>
 
                     {/* view all kits */}
                     {this.state.selection == 'query1' ? 
                     <div>
                         <br></br>
-                        <p>here are all the current quarantine kits: </p>
+                        <p className="directions">here are all the current quarantine kits: </p>
                         <AllKit kits = {this.props}/>
                     </div>
                     : null
@@ -49,12 +54,13 @@ class Queries extends Component {
 
                     {/* search by username */}
                     {this.state.selection == 'query2' ? 
-                    <div>
+                    <div >
                         <br></br>
-                        <p>type in the username. if no kits are displayed, the username is 
+                        <p className="directions">type in the username. if no kits are displayed, the username is 
                             either not recognized or that user does not added any kits yet!
                         </p>
-                        <Form.Control onChange={this.handleChange} id="user" placeholder="enter username" /> 
+                        <div className="directions">
+                        <Form.Control onChange={this.handleChange} id="user" placeholder="enter username" />  </div>
                         {this.state.user ? <SearchUserKit kit = {this.props.kit} likes = {this.props.likes} search = {this.state.user}/> : null}
                     </div>
                     : null
@@ -64,7 +70,8 @@ class Queries extends Component {
                     {this.state.selection == 'query3' ? 
                     <div>
                         <br></br>
-                        <p>pls select a type: </p>
+                        <p className="directions">pls select a type: </p>
+                        <div className="directions">
                         <Form.Control onChange={this.handleChange} id="type" as="select" >
                             <option>select ..</option>
                             <option value="food/drinks">food/drinks</option>
@@ -74,14 +81,14 @@ class Queries extends Component {
                             <option value="health/exercise">health/exercise</option>
                             <option value="arts/diy">arts/diy</option>
                             <option value="misc">misc</option>
-                        </Form.Control>
+                        </Form.Control> </div>
                         {this.state.type ? <SearchTypeKit kit = {this.props.kit} likes = {this.props.likes} search = {this.state.type}/> : null}
                     </div>
                     : null
                     }
                     
                 </div>
-                
+                </div>
             </div>
 
         )
