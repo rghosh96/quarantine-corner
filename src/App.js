@@ -10,6 +10,7 @@ import SignUpPage from './components/auth/SignUpPage';
 import AddKit from './components/kits/AddKit';
 import UserProfile from './components/users/UserProfile';
 import AllUsers from './components/users/AllUsers';
+import UserKits from './components/users/UserKits';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/addkit' component={AddKit} />
         <Route path='/profile' component={UserProfile} />
         <Route path='/users' component={AllUsers} />
+        <Route path='/userkits' component={UserKits} />
       </Switch>
     </BrowserRouter>
   );

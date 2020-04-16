@@ -27,8 +27,11 @@ class Queries extends Component {
             <div>
                 
                 <div className="queryArea">
-                    <h1 className="title">quarantine corner</h1>
-                    <p>pls select which quarantine kits to view, & then click kit barcode to view more information!</p>
+                <img src="../../logo.png" />
+                    <h1 className="title">quarantine corner</h1><br/>
+                    <p>welcome to quarantine corner! here, you can view "kits," which are simple suggestions for things
+                        to do during quarantine (such as a videogame, a workout, a food recipe, etc!). if you are a user, you can add your own kits, and like other people's to add them to your collection! 
+                        pls select which quarantine kits to view, & then click kit barcode to view more information about that kit!</p>
                     <hr />
                     <div className="queries">
                     <div className="directions">

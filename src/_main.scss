@@ -7,7 +7,29 @@ $code: 'Source Code Pro', monospace;
 
 body {
   font-family: $words;
-  margin: 101px;
+  margin: 0px;
+}
+
+img {
+  height: 91px;
+  margin: 10px;
+}
+
+.userkits {
+  margin-top: 101px;
+}
+
+a {
+  color: $main-color !important;
+}
+
+a:hover {
+  text-decoration:none !important;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -206,6 +228,7 @@ form {
   padding: 3px !important;
   border: none !important;
   border-radius: 50% !important;
+  color: white !important;
   background-color: $accent-color !important;
   text-align: center;
   font-size: 11px;

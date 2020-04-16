@@ -8,7 +8,7 @@ const SearchTypeKit = ({kit, likes, search}) => {
 
     return (
             <CardColumns>
-                { kit && kit.map(kit => {
+               { kit && kit.map(kit => {
                 console.log(kit.id)
                 var alike
                 if(likes) {
@@ -23,7 +23,7 @@ const SearchTypeKit = ({kit, likes, search}) => {
                     return (
                         <KitCard kit={kit} like={alike}  key={kit.id} />
                     )}
-                })}
+                })} 
             </CardColumns>
     
     )

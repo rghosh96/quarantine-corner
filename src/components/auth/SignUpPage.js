@@ -32,16 +32,10 @@ class SignUpPage extends Component {
     }
 
     handleSubmit = (e) => {
-        if (this.state.email || this.state.password || this.state.fName || this.state.lName || this.state.major || this.state.state || this.state.classification === '') {
-            console.log(this.state)
-            this.emptyError();
-            e.preventDefault();
-        }
-        else {
         e.preventDefault();
         console.log(this.state);
         this.props.signUp(this.state);
-        }
+        
     }
 
     render() {

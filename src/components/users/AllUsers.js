@@ -1,29 +1,42 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux'
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
+import UserKits from './UserKits';
 
 const AllUsers = ({kit, users}) => {
     console.log(users);
     console.log(kit);
     return (
         <div className = "authPages">
-            <h1> All our Qomerades. </h1>
+            <h1> All our Contributers. </h1>
+            <p className="center">here are all of our users who have contributed suggestions for things for you to do during quarantine!</p>
+            <hr/>
             <CardColumns>
             { users && users.map(user => {
                     var count = 0;
                     // map thru kits on each user & count how many 
                     { kit && kit.map(akit => {
-                        if(akit.userId.uid === user.id) {
+                        if(akit.userId === user.id) {
                             count++;
                         }
                     })}
                     return (
                         <Card>
                             <Card.Body>
-                            <Card.Title >{user.username}</Card.Title>
+                            <Card.Title><Link to={
+                                {
+                                    pathname: '/userkits',
+                                    state: {
+                                        id: user.id,
+                                        count: count,
+                                        name: user.username
+                                    }
+                                }
+                            }>{user.username}</Link></Card.Title>
                             <Card.Text>
                                 <span className="identifier">name: &nbsp;<p className="kitName">{user.fName} {user.lName}</p></span>
                                 <span className="identifier">major: &nbsp;<p className="kitName">{user.major}</p></span>
