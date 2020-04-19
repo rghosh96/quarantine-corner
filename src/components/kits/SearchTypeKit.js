@@ -3,10 +3,10 @@ import KitCard from './KitCard';
 import CardColumns from 'react-bootstrap/CardColumns'
 
 const SearchTypeKit = ({kit, likes, search}) => {
-
+    var found = false;
     console.log(search);
 
-    return (
+    return (<div>
             <CardColumns>
                { kit && kit.map(kit => {
                 console.log(kit.id)
@@ -20,11 +20,15 @@ const SearchTypeKit = ({kit, likes, search}) => {
                         alike = likes[i]}
                 }}
                 if (kit.type === search) {
+                    found = true;
                     return (
                         <KitCard kit={kit} like={alike}  key={kit.id} />
                     )}
                 })} 
+                
             </CardColumns>
+            {found ? null : <p class="center">no kits have been submitted under {search} yet!</p>}
+            </div>
     
     )
 }

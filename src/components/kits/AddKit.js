@@ -20,7 +20,21 @@ class AddKit extends Component {
     }
 
     handleSubmit = (e) => {
-
+        if (this.state.name == '') {
+            alert("name of the kit cannot be empty!")
+            e.preventDefault();
+            return;
+        }
+        if (this.state.type == '') {
+            alert("kit type cannot be empty!")
+            e.preventDefault();
+            return;
+        }
+        if (this.state.description == '') {
+            alert("kit description cannot be empty!")
+            e.preventDefault();
+            return;
+        }
         e.preventDefault();
         console.log(this.state);
         // pass in state to addKit which is handled by dispatcher

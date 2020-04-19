@@ -6,8 +6,9 @@ const SearchUserKit = ({kit, likes, search}) => {
     console.log(kit);
     console.log(likes);
     console.log(search);
-
+    var found = false;
     return (
+        <div>
             <CardColumns>
                 { kit && kit.map(kit => {
                 console.log(kit.id)
@@ -21,12 +22,14 @@ const SearchUserKit = ({kit, likes, search}) => {
                         alike = likes[i]}
                 }}
                 if (kit.user === search) {
+                    found = true;
                     return (
                         <KitCard kit={kit} like={alike}  key={kit.id} />
                     )}
                 })}
             </CardColumns>
-    
+            {found ? null : <p class="center">no kits submitted by {search} were found ):</p>}
+        </div>
     )
 }
 

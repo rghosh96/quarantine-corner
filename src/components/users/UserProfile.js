@@ -10,6 +10,8 @@ import CardColumns from 'react-bootstrap/CardColumns'
 
 const UserProfile = ({profile, auth, likes, kit}) => {
     if (!auth.uid) return <Redirect to ='/'/>
+    var userKitCount = false;
+    var userKitLikes = false;
     console.log(kit)
     console.log(likes)
     return (
@@ -48,6 +50,7 @@ const UserProfile = ({profile, auth, likes, kit}) => {
             <h1> Your Kits. </h1>
             <CardColumns>
                 {
+                    
                     kit && kit.map(userKit => {
                         var like
                         if(likes) {
@@ -56,14 +59,17 @@ const UserProfile = ({profile, auth, likes, kit}) => {
                                 like = likes[i]}
                         }
                         if (userKit.userId === auth.uid) {
+                                userKitCount = true;
                                 return (
                                 <KitCard kit={userKit} like={like} key={userKit.id} /> )
                         }
                     
                     }})
+                    
              }
                     
             </CardColumns>
+            {userKitCount ? null : <p class="center">you have not submitted any kits yet.</p>}
             <hr></hr>
             <br/>
             <h1> Your Liked Kits. </h1>
@@ -72,14 +78,15 @@ const UserProfile = ({profile, auth, likes, kit}) => {
                     kit && kit.map(likedKit => {
                         for (var i in likes) {
                             if (likedKit.id === likes[i].id && likes[i].like === true) {
+                                userKitLikes = true;
                                 return (
                                 <KitCard kit={likedKit} like={likes[i]} key={likedKit.id} /> )
                         }
                     
                     }})
-             }
-                    
+             }   
             </CardColumns>
+            {userKitLikes ? null : <p class="center">you have not liked any kits yet!</p>}
             
         </div>
     )

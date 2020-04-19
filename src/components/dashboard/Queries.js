@@ -60,7 +60,7 @@ class Queries extends Component {
                     <div >
                         <br></br>
                         <p className="directions">type in the username. if no kits are displayed, the username is 
-                            either not recognized or that user does not added any kits yet!
+                            either not recognized or that user has not added any kits yet!
                         </p>
                         <div className="directions">
                         <Form.Control onChange={this.handleChange} id="user" placeholder="enter username" />  </div>

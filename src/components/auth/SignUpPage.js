@@ -32,6 +32,11 @@ class SignUpPage extends Component {
     }
 
     handleSubmit = (e) => {
+        if (this.state.classification == '') {
+            alert("you forgot to select your classification!")
+            e.preventDefault()
+            return
+        }
         e.preventDefault();
         console.log(this.state);
         this.props.signUp(this.state);
@@ -50,44 +55,44 @@ class SignUpPage extends Component {
                 <Form.Row>
                 <Col>
                     <Form.Label>first name</Form.Label>
-                    <Form.Control onChange={this.handleChange} id="fName" />
+                    <Form.Control required onChange={this.handleChange} id="fName" />
                     </Col>
                     <Col>
                     <Form.Label>last name</Form.Label>
-                    <Form.Control onChange={this.handleChange} id="lName"  />
+                    <Form.Control required onChange={this.handleChange} id="lName"  />
                     </Col>
                 </Form.Row>
 
                 
                 <Form.Group  controlId="formGridEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control onChange={this.handleChange} id="email" type="email"  />
+                    <Form.Control required onChange={this.handleChange} id="email" type="email"  />
                 </Form.Group>
 
                 <Form.Group controlId="formGridPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={this.handleChange} id="password" type="password"/>
+                    <Form.Control required onChange={this.handleChange} id="password" type="password"/>
                 </Form.Group>
 
                 <Form.Row>
 
                     <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>State</Form.Label>
-                    <Form.Control onChange={this.handleChange} id="state"/>
+                    <Form.Control required onChange={this.handleChange} id="state"/>
                     </Form.Group>
                     
                     <Form.Group as={Col} >
                     <Form.Label>Major</Form.Label>
-                    <Form.Control onChange={this.handleChange} id="major" />
+                    <Form.Control required onChange={this.handleChange} id="major" />
                     </Form.Group>
 
 
                     <Form.Group as={Col}>
                     <Form.Label>Classification</Form.Label>
-                    <Form.Control onChange={this.handleChange} id="classification" as="select" >
-                        <option>please select</option>
-                        <option>undergraduate</option>
-                        <option>graduate</option>
+                    <Form.Control required onChange={this.handleChange} id="classification" as="select" >
+                        <option required> please select</option>
+                        <option required>undergraduate</option>
+                        <option required>graduate</option>
                     </Form.Control>
                     </Form.Group>
 
